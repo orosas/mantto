@@ -1,11 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
+
 '''
-Crear class Contratista ligado a class Mops
+ToDo: OMAR
+
+08-ENE-2018
+Terminar de crear class Contratista ligado a class Mops
 
 Crear class Mopslog para hacer tracker de cambios de mops
-
 
 '''
 
@@ -56,6 +60,12 @@ class Sitio(models.Model):
 		return u"%s" % (self.site_name)
 
 
+class Contratista(models.Model):
+	nombre = models.CharField(max_length=100, null=False, blank=False)
+	fecha_modif = models.DateField(auto_now=True)
+	fecha_creacion = models.DateField(auto_now_add=True)
+	capturado_por = models.OneToOneField(User, on_delete=models.CASCADE,)
+
 MES = (
 		('Enero','Enero'),
 		('Febrero','Febrero'),
@@ -72,7 +82,6 @@ MES = (
 	)
 
 
-
 class Mops(models.Model):
 	site = models.ForeignKey(Sitio, on_delete=models.CASCADE,)
 	tipo_mop = models.CharField(max_length=100, null=True, blank=True)
@@ -87,3 +96,9 @@ class Mops(models.Model):
 	fecha_modif = models.DateField(auto_now=True)
 	fecha_creacion = models.DateField(auto_now_add=True)
 	capturado_por = models.OneToOneField(User, on_delete=models.CASCADE,)
+
+	def __str__(self):
+		return u"%s" % (self.tipo_mop)
+
+
+
