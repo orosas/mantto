@@ -1,6 +1,14 @@
 from django.db import models
 
 # Create your models here.
+'''
+Crear class Contratista ligado a class Mops
+
+Crear class Mopslog para hacer tracker de cambios de mops
+
+
+'''
+
 
 class Sitio(models.Model):
 	site = models.CharField(max_length=80, null=False, blank=False)
@@ -40,7 +48,42 @@ class Sitio(models.Model):
 	address = models.TextField(null=True, blank=True)
 	municipality = models.CharField(max_length=100, null=True, blank=True)
 	state_name = models.CharField(max_length=50, null=True, blank=True)
+	fecha_modif = models.DateField(auto_now=True)
+	fecha_creacion = models.DateField(auto_now_add=True)
+	capturado_por = models.OneToOneField(User, on_delete=models.CASCADE,)
 
 	def __str__(self):
 		return u"%s" % (self.site_name)
 
+
+MES = (
+		('Enero','Enero'),
+		('Febrero','Febrero'),
+		('Marzo','Marzo'),
+		('Abril','Abril'),
+		('Mayo','Mayo'),
+		('Junio','Junio'),
+		('Julio','Julio'),
+		('Agosto','Agosto'),
+		('Septiembre','Septiembre'),
+		('Octubre','Octubre'),
+		('Noviembre','Noviembre'),
+		('Diciembre','Diciembre'),
+	)
+
+
+
+class Mops(models.Model):
+	site = models.ForeignKey(Sitio, on_delete=models.CASCADE,)
+	tipo_mop = models.CharField(max_length=100, null=True, blank=True)
+	cantidad_mop = models.PositiveSmallIntegerField()
+	mes_programado = models.CharField(choices=MES, max_length=50, null=False, blank=False)
+	fecha_inicio = models.DateField(null=True, blank=True)
+	fecha_fin = models.DateField(null=True, blank=True)
+	contratista = models.OneToOneField(Contratista, on_delete=models.CASCADE,)
+	reporte_recibido = models.DateField(null=True, blank=True)
+	reporte_enviado = models.DateField(null=True, blank=True)
+	reporte_validado = models.DateField(null=True, blank=True)
+	fecha_modif = models.DateField(auto_now=True)
+	fecha_creacion = models.DateField(auto_now_add=True)
+	capturado_por = models.OneToOneField(User, on_delete=models.CASCADE,)
