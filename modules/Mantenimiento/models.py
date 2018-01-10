@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 '''
 ToDo: OMAR
 
-08-ENE-2018
-Terminar de crear class Contratista ligado a class Mops
+09-ENE-2018
+Crear class tracker de correctivos
 
-Crear class Mopslog para hacer tracker de cambios de mops
 
 '''
 
@@ -32,6 +32,7 @@ class Sitio(models.Model):
 	coord = models.CharField(max_length=100, null=True, blank=True)
 	coord_celular = models.CharField(max_length=50, null=True, blank=True)
 	coord_email = models.CharField(max_length=100, null=True, blank=True)
+	coord_mastec = models.CharField(max_length=100, null=True, blank=True)
 	manager = models.CharField(max_length=100, null=True, blank=True)
 	manager_celular = models.CharField(max_length=50, null=True, blank=True)
 	manager_email = models.CharField(max_length=100, null=True, blank=True)
@@ -54,17 +55,25 @@ class Sitio(models.Model):
 	state_name = models.CharField(max_length=50, null=True, blank=True)
 	fecha_modif = models.DateField(auto_now=True)
 	fecha_creacion = models.DateField(auto_now_add=True)
-	capturado_por = models.OneToOneField(User, on_delete=models.CASCADE,)
+	# Relación OneToOne tiene que ser unique
+	capturado_por = models.ForeignKey(User, on_delete=models.CASCADE,)
 
 	def __str__(self):
-		return u"%s" % (self.site_name)
+		return u"%s" % (self.site + " " + self.site_name)
 
 
 class Contratista(models.Model):
-	nombre = models.CharField(max_length=100, null=False, blank=False)
+	nombre_contratista = models.CharField(max_length=100, null=False, blank=False)
+	razon_social = models.CharField(max_length=100, null=True, blank=True)
+	contacto = models.CharField(max_length=100, null=True, blank=True)
+	email = models.CharField(max_length=100, null=True, blank=True)
+	telefono = models.CharField(max_length=50, null=True, blank=True)
 	fecha_modif = models.DateField(auto_now=True)
 	fecha_creacion = models.DateField(auto_now_add=True)
-	capturado_por = models.OneToOneField(User, on_delete=models.CASCADE,)
+	capturado_por = models.ForeignKey(User, on_delete=models.CASCADE,)
+
+	def __str__(self):
+		return u"%s" % (self.nombre_contratista)
 
 MES = (
 		('Enero','Enero'),
@@ -84,21 +93,48 @@ MES = (
 
 class Mops(models.Model):
 	site = models.ForeignKey(Sitio, on_delete=models.CASCADE,)
-	tipo_mop = models.CharField(max_length=100, null=True, blank=True)
-	cantidad_mop = models.PositiveSmallIntegerField()
+	tipo_mop = models.CharField(max_length=100, null=False, blank=False)
+	cantidad_mop = models.PositiveSmallIntegerField(null=False, blank=False)
 	mes_programado = models.CharField(choices=MES, max_length=50, null=False, blank=False)
+	semana_programada = models.PositiveSmallIntegerField(null=True, blank=True)
 	fecha_inicio = models.DateField(null=True, blank=True)
 	fecha_fin = models.DateField(null=True, blank=True)
-	contratista = models.OneToOneField(Contratista, on_delete=models.CASCADE,)
+	contratista = models.OneToOneField(Contratista, on_delete=models.CASCADE, null=True, blank=True)
+	lider_contratista = models.CharField(max_length=100, null=True, blank=True)
+	# Fechas para seguimiento temporal, ya que la idea es que
+	# con la cadena de autorización se registren la fechas
 	reporte_recibido = models.DateField(null=True, blank=True)
-	reporte_enviado = models.DateField(null=True, blank=True)
-	reporte_validado = models.DateField(null=True, blank=True)
+	reporte_enviado_co = models.DateField(null=True, blank=True)
+	reporte_validado_co = models.DateField(null=True, blank=True)
+	reporte_enviado_coord = models.DateField(null=True, blank=True)
+	reporte_validado_coord = models.DateField(null=True, blank=True)
 	fecha_modif = models.DateField(auto_now=True)
 	fecha_creacion = models.DateField(auto_now_add=True)
-	capturado_por = models.OneToOneField(User, on_delete=models.CASCADE,)
+	capturado_por = models.ForeignKey(User, on_delete=models.CASCADE,)
 
 	def __str__(self):
 		return u"%s" % (self.tipo_mop)
 
+class Mopslog(models.Model):
+	site_log = models.ForeignKey(Sitio, on_delete=models.CASCADE,)
+	tipo_mop_log = models.CharField(max_length=100, null=False, blank=False)
+	cantidad_mop_log = models.PositiveSmallIntegerField(null=False, blank=False)
+	mes_programado_log = models.CharField(choices=MES, max_length=50, null=False, blank=False)
+	semana_programada_log = models.PositiveSmallIntegerField(null=True, blank=True)
+	fecha_inicio_log = models.DateField(null=True, blank=True)
+	fecha_fin_log = models.DateField(null=True, blank=True)
+	contratista_log = models.OneToOneField(Contratista, on_delete=models.CASCADE, null=True, blank=True)
+	lider_contratista_log = models.CharField(max_length=100, null=True, blank=True)
+	# Fechas para seguimiento temporal, ya que la idea es que
+	# con la cadena de autorización se registren la fechas
+	reporte_recibido_log = models.DateField(null=True, blank=True)
+	reporte_enviado_co_log = models.DateField(null=True, blank=True)
+	reporte_validado_co_log = models.DateField(null=True, blank=True)
+	reporte_enviado_coord_log = models.DateField(null=True, blank=True)
+	reporte_validado_coord_log = models.DateField(null=True, blank=True)
+	fecha_modif_log = models.DateField(auto_now=True)
+	fecha_creacion_log = models.DateField(auto_now_add=True)
+	capturado_por_log = models.ForeignKey(User, on_delete=models.CASCADE,)
 
-
+	def __str__(self):
+		return u"%s" % (self.tipo_mop_log)

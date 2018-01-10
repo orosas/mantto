@@ -10,5 +10,5 @@ local_settings.py
 db.sqlite3
 media
 runs.bat
-
+migrations
 # End of https://www.gitignore.io/api/django
