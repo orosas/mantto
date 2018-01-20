@@ -1,0 +1,377 @@
+{% extends 'Mantenimiento/base.html' %}
+
+    {% block jumbotron %}
+    {% endblock  %}
+
+    {% block 'body' %}
+    <!-- plantilla index.html -->
+            {% if elerror %}
+              <div class="alert alert-danger" role="alert">
+                <strong>Error: </strong> No existe Sitio con el criterio de búsqueda.
+              </div>
+            {% endif %}
+
+
+          <div class="container contain-main py-1">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="container bg-light py-3">
+
+                      <h2 class="form-signin-heading">Buscar Sitio En Base Mantto.</h2>
+                      <form method="post" action="{% url 'Mantenimiento:busqueda' %}">
+                        <div class="form-row align-items-center">
+                          <div class="col-auto">
+
+                            <div class="input-group mb-2 mb-sm-0">
+                              <div class="input-group-addon"><i class="material-icons md-18 md-white prefix">search</i>
+                                </div>
+                              {% csrf_token %}
+                              {{ form.q }}
+                            </div>
+                          </div>
+                          <div class="col-auto">
+
+                          </div>
+                          <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <!-- Inicia container MAIN -->
+                    <div class="container bg-light container-main">
+
+                      <div class="row pt-1">
+
+                        <div class="col-6">
+                          <h2>CDMX Poniente</h2>
+                          <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+
+                          <table class="table table-sm table-striped">
+                              <thead class="bg-dark text-white">
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">MOP</th>
+                                  <th scope="col">EJECUTADO</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>MOP 1 Mantenimiento a Plantas de CD
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                  <td>MOP 10 Preventivo Generador</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">3</th>
+                                  <td>MOP 11 Mantenimiento a Obra Civil</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <td>MOP 12 Mantenimiento al Sistema Radiante</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <td>MOP 2 Gabinetes Outdoor</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">5</th>
+                                  <td>MOP 3 Shelter</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">6</th>
+                                  <td>MOP 4 Sistema de Tierras</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">7</th>
+                                  <td>MOP 6 Sistema de Microondas</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">8</th>
+                                  <td>MOP 8 HVAC</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">9</th>
+                                  <td>MOP 9 HVAC TP48</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr class="table-info">
+                                  <td class="text-right" colspan="3">TOTAL EN REGIÓN: 57 </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                        </div><!-- /col 6 -->
+
+                        <div class="col-6">
+                          <h2>CDMX NORTE</h2>
+                          <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+
+                          <table class="table table-sm table-striped">
+                              <thead class="bg-dark text-white">
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">MOP</th>
+                                  <th scope="col">EJECUTADO</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>MOP 1 Mantenimiento a Plantas de CD
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                  <td>MOP 10 Preventivo Generador</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">3</th>
+                                  <td>MOP 11 Mantenimiento a Obra Civil</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <td>MOP 12 Mantenimiento al Sistema Radiante</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <td>MOP 2 Gabinetes Outdoor</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">5</th>
+                                  <td>MOP 3 Shelter</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">6</th>
+                                  <td>MOP 4 Sistema de Tierras</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">7</th>
+                                  <td>MOP 6 Sistema de Microondas</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">8</th>
+                                  <td>MOP 8 HVAC</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">9</th>
+                                  <td>MOP 9 HVAC TP48</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr class="table-info">
+                                  <td class="text-right" colspan="3">TOTAL EN REGIÓN: 57 </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                        </div><!-- /col 6 -->
+
+
+
+
+
+
+                      </div><!-- /row 1 -->
+
+
+                      <div class="row pt-1"> <!-- /row 2 -->
+
+                        <div class="col-6">
+                          <h2>TOLUCA</h2>
+                          <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+
+
+                          <table class="table table-sm table-striped">
+                              <thead class="bg-dark text-white">
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">MOP</th>
+                                  <th scope="col">EJECUTADO</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>MOP 1 Mantenimiento a Plantas de CD
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                  <td>MOP 10 Preventivo Generador</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">3</th>
+                                  <td>MOP 11 Mantenimiento a Obra Civil</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <td>MOP 12 Mantenimiento al Sistema Radiante</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <td>MOP 2 Gabinetes Outdoor</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">5</th>
+                                  <td>MOP 3 Shelter</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">6</th>
+                                  <td>MOP 4 Sistema de Tierras</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">7</th>
+                                  <td>MOP 6 Sistema de Microondas</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">8</th>
+                                  <td>MOP 8 HVAC</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">9</th>
+                                  <td>MOP 9 HVAC TP48</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr class="table-info">
+                                  <td class="text-right" colspan="3">TOTAL EN REGIÓN: 57 </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                        </div><!-- /col 6 -->
+
+                        <div class="col-6">
+                          <h2>PACHUCA</h2>
+                          <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+
+
+                          <table class="table table-sm table-striped">
+                              <thead class="bg-dark text-white">
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">MOP</th>
+                                  <th scope="col">EJECUTADO</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>MOP 1 Mantenimiento a Plantas de CD
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                  <td>MOP 10 Preventivo Generador</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">3</th>
+                                  <td>MOP 11 Mantenimiento a Obra Civil</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <td>MOP 12 Mantenimiento al Sistema Radiante</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <td>MOP 2 Gabinetes Outdoor</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">5</th>
+                                  <td>MOP 3 Shelter</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">6</th>
+                                  <td>MOP 4 Sistema de Tierras</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">7</th>
+                                  <td>MOP 6 Sistema de Microondas</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">8</th>
+                                  <td>MOP 8 HVAC</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">9</th>
+                                  <td>MOP 9 HVAC TP48</td>
+                                  <td>1</td>
+                                </tr>
+                                <tr class="table-info">
+                                  <td class="text-right" colspan="3">TOTAL EN REGIÓN: 57 </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                        </div><!-- /col 6 -->
+
+
+
+
+
+
+                      </div><!-- /row 2-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div> <!-- Termina container MAIN -->
+
+
+
+                </div>
+
+
+
+                <!-- Inicia container menu derecha -->
+
+
+            </div>
+        </div>
+    {% endblock  %}

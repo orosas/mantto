@@ -1,0 +1,319 @@
+{%extends 'Mantenimiento/base.html'%}
+{%load static%}
+
+{% block jumbotron %}
+{% endblock  %}
+
+{%block 'title'%}<title>MasTec Disclaimer Sitio {{sitio.site_name}} </title>{%endblock%}
+
+
+{%block 'body'%}
+
+  <div class="row"><!-- row2 Dashboard style="margin-top: 48px;"-->
+      
+      <ol class="breadcrumb" style="margin-top: 58px;">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Disclaimer</a></li>
+        <li class="active">{{region}}</li>
+      </ol>
+
+      <h1 class="text-center">Proyecto Disclaimer. Sitios Región {{region}}</h1>
+
+      <div class="table-responsive"><!-- table-responsive -->
+            <table class="table table-striped ">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>IDATT</th>
+                  <th>ID3G</th>
+                  <th>IDGSM</th>
+                  <th>IDLTE</th>
+                  <th>IDiDEN</th>
+                  <th>SITE NAME</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                {% for sitio in sitios %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>
+                      <a href="{% url 'Disclaimer:detalle_sitio' sitio.pk %}">
+                        {% if sitio.idatt_mastec %}
+                          {{sitio.idatt_mastec}}
+                        {% else %}
+                        {% endif %} 
+                      </a>
+                    </td>
+                    <td>
+                        {% if sitio.id3g %}
+                          {{sitio.id3g}}
+                        {% else %}
+                        {% endif %} 
+                    </td>
+                    <td>
+                        {% if sitio.idgsm %}
+                          {{sitio.idgsm}}
+                        {% else %}
+                        {% endif %} 
+                    </td>
+                    <td>
+                        {% if sitio.idlte %}
+                          {{sitio.idlte}}
+                        {% else %}
+                        {% endif %} 
+                    </td>
+                    <td>
+                        {% if sitio.ididen %}
+                          {{sitio.ididen}}
+                        {% else %}
+                        {% endif %} 
+                    </td>
+                    <td>
+                      <a href="{% url 'Disclaimer:detalle_sitio' sitio.pk %}">
+                        {% if sitio.nombre_sitio %}
+                          {{sitio.nombre_sitio}}
+                        {% else %}
+                        {% endif %} 
+                      </a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+           </table>
+      </div><!-- /table-responsive -->
+      
+      <div class="pagination">
+        <span class="step-links">
+          {% if sitios.has_previous %}
+              <a href="?page={{ sitios.previous_page_number }}">Previa</a>
+          {% endif %}
+
+          <span class="current">
+              Página {{ sitios.number }} De {{ sitios.paginator.num_pages }}.
+          </span>
+
+          {% if sitios.has_next %}
+              <a href="?page={{ sitios.next_page_number }}">Siguiente</a>
+          {% endif %}
+        </span>
+      </div>
+
+
+  </div><!-- /row2 Dashboard-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+detallesitio_mantto.html
+	<div class="row"><!-- row2 Dashboard style="margin-top: 48px;"-->
+      
+      <ol class="breadcrumb">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Disclaimer</a></li>
+        <li class="active">Sitio 
+          {{sitio.site}}
+        </li>
+      </ol>
+
+      <h1 class="text-center">
+           {{sitio.site}} {{sitio.site_name}}</h1>
+  
+    <h3 class="text-left"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> ID's</h3>
+      <div class="table-responsive"><!-- table-responsive -->
+            <table class="table table-striped ">
+              <thead>
+                <tr>
+                  <th>SITE</th>
+                  <th>ID3G</th>
+                  <th>IDGSM</th>
+                  <th>IDLTE</th>
+                  <th>IDiDEN</th>
+                  <th>SITE NAME</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>
+{{sitio.site}}
+                    </td>
+                    <td>{{sitio.iden}}</td>
+                    <td>{{sitio.gsm}}</td>
+                    <td>{{sitio.id_3g}}</td>
+                    <td>{{sitio.lte}}</td>
+                    <td>{{sitio.site_name}}</td>
+                  </tr>
+              </tbody>
+           </table>
+      </div><!-- /table-responsive -->  
+
+
+
+
+
+  <h3 class="text-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Datos Generales</h3>
+  <div class="table-responsive"><!-- table-responsive -->
+            <table class="table table-striped ">
+              <thead>
+                <tr>
+                  <th>Región</th>
+                  <th>Prioridad</th>
+                  <th>Latitud</th>
+                  <th>Longitud</th>
+                  <th>CellOwner</th>
+                  <th>Cell Owner Tel</th>
+                  <th>Comentario ATT</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>{{sitio.region}}</td>
+                    <td>{{sitio.prioridad}}</td>
+                    <td>
+                      <a href="http://maps.google.com/?q={{sitio.lat_decimal}},{{sitio.long_decimal}}" target="_blank">
+                        {{sitio.lat_decimal}}
+                      </a>
+                    </td>
+                    <td>
+                      <a href="http://maps.google.com/?q={{sitio.lat_decimal}},{{sitio.long_decimal}}" target="_blank">
+                        {{sitio.long_decimal}}
+                      </a>
+                    </td>
+                    <td>{{sitio.co}}</td>
+                    <td>{{sitio.co_celular}}</td>
+                    <td>{{sitio.aceso}}</td>
+                  </tr>
+              </tbody>
+           </table>
+      </div><!-- /table-responsive -->
+
+
+
+      
+      <p>
+
+          <b>Avance:</b> 0 % </p>
+
+
+      <div class="progress">
+                      <div class="progress-bar progress-bar-success" style="width: {{status.avance}}%">
+                        <span class="sr-only">% Complete (success)</span>
+                      </div>
+      </div>
+      <p><b>Proveedor:</b> XX </p> 
+
+
+      Ver en <a href="http://maps.google.com/?q={{sitio.lat_decimal}},{{sitio.long_decimal}}" target="_blank"> <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Google Maps</a>
+
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          1.- Status:
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <p><b>Ultima Actividad:</b>  </p> 
+        <p><b>Status:</b> 
+ 
+        </p> 
+        <p>
+
+            <b>Avance:</b> 0 % 
+
+        </p>
+        <p><b>Contratista:</b> </p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading panel-primary" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          2.- Levantamiento:
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <p><b>Semana Programada AT&T:</b>  </p> 
+        <p><b>Fecha Programada AT&T:</b>  </p>
+        <p><b>Fecha Ejecución:</b> % </p>
+        <p><b>Levantado Por:</b> % </p>
+        <p><b>Nota:</b> % </p>
+        <p><b>Recibido Por MasTec:</b> % </p>
+        <p><b>Validado por AT&T:</b> % </p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          3.- Programa De Obra
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+       <p><b>Proveedor:</b>  </p> 
+        <p><b>Supervisor:</b>  </p>
+        <p><b>Cuadrilla:</b> </p>
+        <p><b>Semana Inicio Programado AT&T:</b> % </p>
+        <p><b>Inicio Programado AT&T:</b> % </p>
+        <p><b>Inicio Real:</b> % </p>
+        <p><b>Semana Fin Programado:</b> % </p>
+        <p><b>Fecha Fin Programado:</b> % </p>
+        <p><b>Fecha Fin Real:</b> % </p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFour">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          4.- Volumétrico:
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div><!-- /row2 Dashboard-->
+
+  
+
+{%endblock%} <!-- Termina bloque content -->

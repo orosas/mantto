@@ -1,0 +1,151 @@
+{% extends 'Mantenimiento/base.html' %}
+
+    {% block jumbotron %}
+    {% endblock  %}
+
+    {% block 'body' %}
+    <!-- plantilla index.html -->
+            {% if elerror %}
+              <div class="alert alert-danger" role="alert">
+                <strong>Error: </strong> No existe Sitio con el criterio de búsqueda.
+              </div>
+            {% endif %}
+
+
+          <div class="container contain-main py-1">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="container bg-light py-3">
+
+                      <h2 class="form-signin-heading">Buscar Sitio En Base Mantenimiento</h2>
+                      <form method="post" action="{% url 'Mantenimiento:busqueda' %}">
+                        <div class="form-row align-items-center">
+                          <div class="col-auto">
+
+                            <div class="input-group mb-2 mb-sm-0">
+                              <div class="input-group-addon"><i class="material-icons md-18 md-white prefix">search</i>
+                                </div>
+                              {% csrf_token %}
+                              {{ form.q }}
+                            </div>
+                          </div>
+                          <div class="col-auto">
+
+                          </div>
+                          <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <!-- Inicia container MAIN -->
+                    <div class="container container-main">
+
+                      <div class="row pt-1">
+                        <div class="col-md-6 text-center">
+                          <h2>Preventivos</h2>
+                          <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                          <p>Información de Mantenimientos Preventivos R9 AT&T. </p>
+                          <p><a class="btn btn-info" href="{% url 'Mantenimiento:preventivos'%}" role="button">Resumen</a></p>
+                        </div>
+                        <div class="col-md-6 text-center">
+                          <h2>Correctivos</h2>
+                          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                          <p>Información de Mantenimientos Correctivos R9 AT&T </p>
+                          <p><a class="btn btn-info" href="{% url 'Mantenimiento:correctivos'%}" role="button">Resumen</a></p>
+                        </div>
+                      </div><!-- /row -->
+
+
+                        <div class="row bg-light">
+
+
+                          {% if sitios %}
+                            <div class="table-responsive"><!-- table-responsive -->
+                                <table class="table table-striped ">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>IDATT</th>
+                                      <th>SITE NAME</th>
+                                      <th>IDEN</th>
+                                      <th>GSM</th>
+                                      <th>ID 3G</th>
+                                      <th>LTE</th>
+                                      <th>COORD ATT</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+
+                                    {% for sitio in sitios %}
+                                      <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>
+                                            {% if sitio.site %}
+                                              <a href="{% url 'Mantenimiento:detalle_sitio' sitio.pk %}">
+                                              {{sitio.site}}
+                                              </a>
+                                            {% else %}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if sitio.site_name %}
+                                              {{sitio.site_name}}
+                                            {% else %}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if sitio.iden %}
+                                              {{sitio.iden}}
+                                            {% else %}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if sitio.gsm %}
+                                              {{sitio.gsm}}
+                                            {% else %}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if sitio.id_3g %}
+                                              {{sitio.id_3g}}
+                                            {% else %}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if sitio.lte %}
+                                              {{sitio.lte}}
+                                            {% else %}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if sitio.coord %}
+                                              {{sitio.coord}}
+                                            {% else %}
+                                            {% endif %}
+                                        </td>
+                                      </tr>
+                                    {% endfor %}
+                                  </tbody>
+                               </table>
+                            </div><!-- /table-responsive -->
+                          {% endif %}
+
+                        </div>
+
+
+                    </div> <!-- Termina container MAIN -->
+
+
+
+                </div>
+
+
+
+                <!-- Inicia container menu derecha -->
+
+
+            </div>
+        </div>
+    {% endblock  %}

@@ -1,0 +1,138 @@
+{% extends 'Mantenimiento/base.html' %}
+
+    {% block jumbotron %}
+    {% endblock  %}
+
+    {% block 'body' %}
+    <!-- plantilla index.html -->
+            {% if elerror %}
+              <div class="alert alert-danger" role="alert">
+                <strong>Error: </strong> No existe Sitio con el criterio de búsqueda.
+              </div>
+            {% endif %}
+
+
+          <div class="container contain-main py-1">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="container bg-light py-3">
+
+                      <h2 class="form-signin-heading">Buscar Sitio En Base Mantto.</h2>
+                      <form method="post" action="{% url 'Mantenimiento:busqueda' %}">
+                        <div class="form-row align-items-center">
+                          <div class="col-auto">
+
+                            <div class="input-group mb-2 mb-sm-0">
+                              <div class="input-group-addon"><i class="material-icons md-18 md-white prefix">search</i>
+                                </div>
+                              {% csrf_token %}
+                              {{ form.q }}
+                            </div>
+                          </div>
+                          <div class="col-auto">
+
+                          </div>
+                          <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <!-- Inicia container MAIN -->
+                    <div class="container bg-light container-main">
+
+                      <div class="row pt-1">
+
+                        <div class="col-12">
+                          <h2>MOP 13 LIMPIEZA DE SITIOS</h2>
+                          <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+
+                          <table class="table table-sm table-striped">
+                              <thead class="bg-dark text-white">
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">PREGUNTA MOP</th>
+                                  <th scope="col">FOTOGRAFÍA ANTES</th>
+                                  <th scope="col">FOTOGRAFÍA DESPUÉS</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Limpieza De Registros de Tierras
+                                  <td><input name="myFile" type="file"></td>
+                                  <td><input name="myFile" type="file"></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                  <td>Deshierbe</td>
+                                  <td><input name="myFile" type="file"></td>
+                                  <td><input name="myFile" type="file"></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">3</th>
+                                  <td>Limpieza De Estructuras Metálicas</td>
+                                  <td><input name="myFile" type="file"></td>
+                                  <td><input name="myFile" type="file"></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <td>Aplicación De Herbicida</td>
+                                  <td><input name="myFile" type="file"></td>
+                                  <td><input name="myFile" type="file"></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <td>Aplicación De Insecticida</td>
+                                  <td><input name="myFile" type="file"></td>
+                                  <td><input name="myFile" type="file"></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">5</th>
+                                  <td>Limpieza Área De Subestación y Nicho</td>
+                                  <td><input name="myFile" type="file"></td>
+                                  <td><input name="myFile" type="file"></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">6</th>
+                                  <td>Limpieza De Predio Para Sitios Cohabitados</td>
+                                  <td><input name="myFile" type="file"></td>
+                                  <td><input name="myFile" type="file"></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">7</th>
+                                  <td>Retiro De Basura De Sitio</td>
+                                  <td><input name="myFile" type="file"></td>
+                                  <td><input name="myFile" type="file"></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">8</th>
+                                  <td>Comentarios</td>
+                                  <td colspan="3"><input name="myFile" type="text"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                        </div><!-- /col 6 -->
+
+
+
+                      </div><!-- /row 1 -->
+
+
+
+                    </div> <!-- Termina container MAIN -->
+
+
+
+                </div>
+
+
+
+                <!-- Inicia container menu derecha -->
+
+
+            </div>
+        </div>
+    {% endblock  %}

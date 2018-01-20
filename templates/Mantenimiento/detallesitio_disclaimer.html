@@ -1,0 +1,387 @@
+{%extends './base.html'%}
+{%load static%}
+
+{%block 'title'%}<title>MasTec Disclaimer Sitio {{sitio.nombre_sitio}} </title>{%endblock%}
+
+{% block jumbotron %}
+{% endblock  %}
+
+
+{%block 'body'%}
+detallesitio_disclaimer.html
+<div class="container bg-light">
+	<div class="row"><!-- row2 Dashboard style="margin-top: 48px;"-->
+
+<div class="col-12">
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item"><a href="{% url 'Mantenimiento:index' %}">Inicio</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">{{sitio.site}} {{sitio.site_name}}</li>
+		  </ol>
+		</nav>
+
+
+      <h1 class="text-center">
+      {{sitio.site}} {{sitio.site_name}}</h1>
+
+    <h3 class="text-left"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> ID's</h3>
+
+
+      <div class="table-responsive"><!-- table-responsive 1-->
+            <table class="table table-striped ">
+              <thead  class="bg-secondary text-white">
+                <tr>
+                  <th>SITE</th>
+									<th>SITE NAME</th>
+                  <th>iDEN</th>
+                  <th>GSM</th>
+                  <th>3G</th>
+                  <th>LTE</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>
+										{{sitio.site}}
+                    </td>
+                    <td>{{sitio.site_name}}</td>
+                    <td>
+											{% if sitio.iden %}
+													{{sitio.iden}}
+												{% endif %}
+											</td>
+                    <td>
+												{% if sitio.gsm %}
+													{{sitio.gsm}}
+												{% endif %}
+										</td>
+                    <td>
+											{% if sitio.id_3g %}
+												{{sitio.id_3g}}
+											{% endif %}
+										</td>
+                    <td>
+											{% if sitio.lte %}
+												{{sitio.lte}}
+											{% endif %}
+										</td>
+                  </tr>
+              </tbody>
+           </table>
+      </div><!-- /table-responsive 1-->
+
+
+Ver en <a href="http://maps.google.com/?q={{sitio.lat_decimal}},{{sitio.long_decimal}}" target="_blank"> <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Google Maps</a>
+
+
+  <h3 class="text-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Datos Generales</h3>
+
+
+	<div class="table-responsive"><!-- table-responsive 2-->
+						<table class="table ">
+							<thead class="bg-secondary text-white">
+								<tr>
+									<th>Jerarquía</th>
+									<th>CellOwner</th>
+									<th>CellOwner Celular</th>
+									<th>CellOwner Email</th>
+									<th>Coordinador</th>
+									<th>Coordinador Celular</th>
+									<th>Coordinador Email</th>
+								</tr>
+							</thead>
+							<tbody>
+									<tr>
+										<td>{{sitio.jerarquia}}</td>
+										<td>{{sitio.co}}</td>
+										<td>
+											{{sitio.co_celular}}
+										</td>
+										<td>
+											{{sitio.co_email}}
+										</td>
+										<td>{{sitio.coord}}</td>
+										<td>{{sitio.coord_celular}}</td>
+										<td>{{sitio.coord_email}}</td>
+									</tr>
+							</tbody>
+					 </table>
+			</div><!-- /table-responsive 2-->
+
+
+
+
+  <div class="table-responsive"><!-- table-responsive 3-->
+            <table class="table">
+              <thead class="bg-secondary text-white">
+                <tr>
+                  <th>Coordinador MasTec</th>
+                  <th>Manager</th>
+                  <th>Manager Celular</th>
+                  <th>Manager Email</th>
+                  <th>Director</th>
+                  <th>Director Celular</th>
+                  <th>Director Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>
+											{{sitio.coord_mastec}}
+										</td>
+                    <td>
+											{{sitio.manager}}
+										</td>
+                    <td>
+											{{sitio.manager_celular}}
+                    </td>
+                    <td>
+											{{sitio.manager_email}}
+                    </td>
+                    <td>{{sitio.director}}</td>
+                    <td>{{sitio.director_celular}}</td>
+                    <td>{{sitio.director_email}}</td>
+                  </tr>
+              </tbody>
+           </table>
+      </div><!-- /table-responsive 3 -->
+
+
+
+
+			<div class="table-responsive"><!-- table-responsive 4-->
+		            <table class="table">
+		              <thead class="bg-secondary text-white">
+		                <tr>
+		                  <th>Management</th>
+		                  <th>Region Num</th>
+		                  <th>Mercado Anterior</th>
+		                  <th>Prioridad</th>
+		                  <th>Acceso</th>
+		                  <th>Dirección</th>
+		                  <th>Municipio</th>
+		                </tr>
+		              </thead>
+		              <tbody>
+		                  <tr>
+		                    <td>{{sitio.management}}</td>
+		                    <td>{{sitio.region_num}}</td>
+		                    <td>{{sitio.mercado_anterior}}</td>
+		                    <td>{{sitio.prioridad}}</td>
+		                    <td>{{sitio.acceso}}</td>
+		                    <td>{{sitio.address}}</td>
+		                    <td>{{sitio.municipality}}</td>
+		                  </tr>
+		              </tbody>
+		           </table>
+		      </div><!-- /table-responsive 4 -->
+
+
+					<div class="table-responsive"><!-- table-responsive 5-->
+										<table class="table">
+											<thead class="bg-secondary text-white">
+												<tr>
+													<th>Estado</th>
+													<th>Nota MasTec</th>
+													<th>Coordenadas (Lat, Long)</th>
+												</tr>
+											</thead>
+											<tbody>
+													<tr>
+														<td>{{sitio.state_name}}</td>
+														<td>
+															{% if sitio.nota_mastec %}
+																{{sitio.nota_mastec}}
+															{% endif %}
+														</td>
+														<td>
+															<a href="http://maps.google.com/?q={{sitio.lat_decimal}},{{sitio.long_decimal}}" target="_blank">
+															 {{sitio.lat_decimal}} {{sitio.long_decimal}}
+														 </a>
+														</td>
+													</tr>
+											</tbody>
+									 </table>
+							</div><!-- /table-responsive 5 -->
+
+
+
+      <p><b>Avance:</b> 45 % </p>
+
+      <div class="progress">
+                      <div class="progress-bar bg-success" style="width:45%">
+                        <span class="sr-only">45% Complete (success)</span>
+                      </div>
+      </div>
+
+
+			<div id="accordion">
+			  <div class="card">
+			    <div class="card-header" id="headingOne">
+			      <h5 class="mb-0">
+			        <button class="btn btn-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			          MOPs
+			        </button>
+			      </h5>
+			    </div>
+
+			    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+			      <div class="card-body">
+							<table class="table table-responsive table-bordered table-sm">
+								  <thead class="bg-secondary">
+								    <tr>
+								      <th scope="col">#</th>
+								      <th scope="col">MOP</th>
+								      <th scope="col">CANTIDAD MOP</th>
+								      <th scope="col">EJECUTADA</th>
+											<th scope="col">INICIO</th>
+											<th scope="col">TÉRMINO</th>
+											<th scope="col">INICIO</th>
+											<th scope="col">TÉRMINO</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+										{% for mop in mops %}
+											    <tr>
+											      <th scope="row">{{forloop.counter}}</th>
+											      <td><a href="{% url 'Mantenimiento:preventivoform'%}">{{ mop.tipo_mop }}</a></td>
+											      <td>{{ mop.cantidad_mop }}</td>
+											      <td>{{ mop.cantidad_mop_ejecutada }}</td>
+														<td>
+															{% if mop.fecha_fin %}
+																{{mop.fecha_fin}}
+															{% endif %}
+														</td>
+														<td>
+															{% if mop.fecha_inicio %}
+																{{mop.fecha_inicio}}
+															{% endif %}
+														</td>
+														<td>
+															<input type="date" name="inicio">
+														</td>
+														<td>
+															<input type="date" name="inicio">
+														</td>
+											    </tr>
+										{% endfor %}
+										<tr>
+											<td class="text-right">
+												<button type="button" class="btn btn-primary">Actualizar</button>
+											</td>
+										</tr>
+								  </tbody>
+								</table>
+
+
+
+
+			      </div>
+			    </div>
+			  </div>
+			  <div class="card">
+			    <div class="card-header" id="headingTwo">
+			      <h5 class="mb-0">
+			        <button class="btn btn-dark collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			          CORRECTIVOS
+			        </button>
+			      </h5>
+			    </div>
+			    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+			      <div class="card-body">
+
+
+							<table class="table table-responsive table-bordered table-sm">
+									<thead class="bg-secondary">
+										<tr>
+											<th scope="col">#</th>
+											<th scope="col">ACTIVIDAD</th>
+											<th scope="col">TIPO</th>
+											<th scope="col">FECHA</th>
+											<th scope="col">HORA REPORTE</th>
+											<th scope="col">STATUS</th>
+											<th scope="col">VALIDADO POR ATT</th>
+											<th scope="col">NOTA</th>
+										</tr>
+									</thead>
+									<tbody>
+
+													<tr>
+														<th scope="row">1</th>
+														<td>Suministro de diesel</td>
+														<td>FLUIDOS</td>
+														<td>20-ENE-2018</td>
+														<td>16:00</td>
+														<td>Programada</td>
+														<td>Pendiente / Aprobado</td>
+														<td>Pendiente Por: Arturo Cortés</td>
+													</tr>
+													<tr>
+														<th scope="row">2</th>
+														<td>Cambio De Jumper</td>
+														<td>CORRECTIVO</td>
+														<td>18-ENE-2018</td>
+														<td>16:00</td>
+														<td>Realizada</td>
+														<td>Pendiente / Aprobado</td>
+														<td>Pendiente Por: Arturo Cortés</td>
+													</tr>
+										<tr>
+											<td class="text-right">
+												<button type="button" class="btn btn-primary">Agregar Ticket</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+
+
+
+			      </div>
+			    </div>
+			  </div>
+			  <div class="card">
+			    <div class="card-header" id="headingThree">
+			      <h5 class="mb-0">
+			        <button class="btn btn-dark collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			          ARCHIVOS ADICIONALES
+			        </button>
+			      </h5>
+			    </div>
+			    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+			      <div class="card-body">
+							<table class="table table-responsive table-bordered table-sm">
+									<thead class="bg-secondary">
+										<tr>
+											<th scope="col">#</th>
+											<th scope="col">DESCRIPCIÓN</th>
+											<th scope="col">ARCHIVO</th>
+										</tr>
+									</thead>
+									<tbody>
+
+													<tr>
+														<th scope="row">1</th>
+														<td>Visita a sitio</td>
+														<td></td>
+													</tr>
+										<tr>
+											<td class="text-right">
+												<button type="button" class="btn btn-primary">Agregar Archivo</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+						</div>
+			    </div>
+			  </div>
+			</div>
+
+
+  </div><!-- /row2 Dashboard-->
+</div><!-- /columna 12-->
+</div><!-- /container-->
+
+
+{%endblock%} <!-- Termina bloque content -->
