@@ -32,7 +32,7 @@ def Busqueda(request):
 			q = form.cleaned_data['q']
 
 			sitios = Sitio.objects.filter(Q(site__unaccent__icontains=q)|
-											Q(site_name__icontains=q)|
+											Q(site_name__unaccent__icontains=q)|
 											Q(iden__icontains=q)|
 											Q(gsm__icontains=q)|
 											Q(id_3g__icontains=q)|
@@ -82,9 +82,11 @@ def Preventivos(request):
 	return render(request, 'Mantenimiento/preventivos.html', {'form': form})
 
 
+
 def Preventivoform(request):
 	form = BusquedaForm()
 	return render(request, 'Mantenimiento/preventivoform.html', {'form': form})
+
 
 def Correctivos(request):
 	form = BusquedaForm()

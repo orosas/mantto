@@ -17,31 +17,6 @@
                 <div class="col-12 col-md-12">
                     <div class="container bg-light py-3">
 
-                      <h2 class="form-signin-heading">Buscar Sitio En Base Mantenimiento</h2>
-                      <form method="post" action="{% url 'Mantenimiento:busqueda' %}">
-                        <div class="form-row align-items-center">
-                          <div class="col-auto">
-
-                            <div class="input-group mb-2 mb-sm-0">
-                              <div class="input-group-addon"><i class="material-icons md-18 md-white prefix">search</i>
-                                </div>
-                              {% csrf_token %}
-                              {{ form.q }}
-                            </div>
-                          </div>
-                          <div class="col-auto">
-
-                          </div>
-                          <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Buscar</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-
-                    <!-- Inicia container MAIN -->
-                    <div class="container container-main">
-
                       <div class="row pt-1">
                         <div class="col-md-6 text-center">
                           <h2>Preventivos</h2>
@@ -58,6 +33,12 @@
                       </div><!-- /row -->
 
 
+                    </div>
+
+                    <!-- Inicia container MAIN -->
+                    <div class="container container-main">
+
+  
                         <div class="row bg-light">
 
 

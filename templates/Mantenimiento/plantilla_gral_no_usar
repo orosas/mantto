@@ -1,0 +1,20 @@
+                     <h2 class="form-signin-heading">Buscar Sitio En Base Mantenimiento</h2>
+                      <form method="post" action="{% url 'Mantenimiento:busqueda' %}">
+                        <div class="form-row align-items-center">
+                          <div class="col-auto">
+
+                            <div class="input-group mb-2 mb-sm-0">
+                              <div class="input-group-addon"><i class="material-icons md-18 md-white prefix">search</i>
+                                </div>
+                              {% csrf_token %}
+                              {{ form.q }}
+                            </div>
+                          </div>
+                          <div class="col-auto">
+
+                          </div>
+                          <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                          </div>
+                        </div>
+                      </form>

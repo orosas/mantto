@@ -52,8 +52,10 @@
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Buscar Sitio" aria-label="Search">
+        <form method="post" action="{% url 'Mantenimiento:busqueda' %}" class="form-inline my-2 my-lg-0">
+        <strong class="text-white">Busqueda De Sitio: </strong>
+                {% csrf_token %}
+                {{ form.q }}
           <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
         </form>
       </div>
