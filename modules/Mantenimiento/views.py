@@ -5,6 +5,19 @@ from .models import Sitio, Mops
 
 #from django.http import HttpResponse
 
+
+'''
+ToDo: OMAR
+
+08-MAR-2018
+Crear Login / Logut
+
+
+'''
+
+
+
+
 # Create your views here.
 def Index(request):
 
@@ -54,6 +67,9 @@ def Busqueda(request):
 
 
 def Login(request):
+	pass
+
+def Logout(request):
 	pass
 
 

@@ -12,6 +12,9 @@ Crear class tracker de correctivos
 
 Crear class para control de llaves
 
+13-MAR-2018
+Agregar class FolioAttom para usar con class MOPs
+
 
 '''
 
@@ -61,6 +64,10 @@ class Sitio(models.Model):
 	# Relación OneToOne tiene que ser unique
 	capturado_por = models.ForeignKey(User, on_delete=models.CASCADE,)
 
+	class Meta:
+		verbose_name='sitio'
+		verbose_name_plural='sitios'
+
 	def __str__(self):
 		return u"%s" % (self.site + " " + self.site_name)
 
@@ -74,6 +81,10 @@ class Contratista(models.Model):
 	fecha_modif = models.DateField(auto_now=True)
 	fecha_creacion = models.DateField(auto_now_add=True)
 	capturado_por = models.ForeignKey(User, on_delete=models.CASCADE,)
+
+	class Meta:
+		verbose_name='contratista'
+		verbose_name_plural='contratistas'
 
 	def __str__(self):
 		return u"%s" % (self.nombre_contratista)
@@ -93,57 +104,59 @@ MES = (
 		('Diciembre','Diciembre'),
 	)
 
-
-class Mops(models.Model):
+'''
+Tabla de programación de MOPs.
+'''
+class Mop(models.Model):
 	site = models.ForeignKey(Sitio, on_delete=models.CASCADE,)
+	owner = models.CharField(max_length=100, null=True, blank=True)
+	site_type = models.CharField(max_length=100, null=True, blank=True)
+	folio_attom = models.IntegerField(max_length=7, null=False, blank=False)
 	tipo_mop = models.CharField(max_length=100, null=False, blank=False)
+	mes_programado = models.CharField(choices=MES, max_length=50, null=False, blank=False)
 	cantidad_mop = models.PositiveSmallIntegerField(null=False, blank=False)
 	cantidad_mop_ejecutada = models.PositiveSmallIntegerField(null=False, blank=False, default=0)
-	mes_programado = models.CharField(choices=MES, max_length=50, null=False, blank=False)
-	semana_programada = models.PositiveSmallIntegerField(null=True, blank=True)
-	eliminado = models.BooleanField(default=False)
 	fecha_inicio = models.DateField(null=True, blank=True)
 	fecha_fin = models.DateField(null=True, blank=True)
+	semana_programada = models.PositiveSmallIntegerField(null=True, blank=True)
+	eliminado = models.BooleanField(default=False)
 	contratista = models.ForeignKey(Contratista, on_delete=models.CASCADE, null=True, blank=True)
 	lider_contratista = models.CharField(max_length=100, null=True, blank=True)
-	# Fechas para seguimiento temporal, ya que la idea es que
-	# con la cadena de autorización se registren la fechas
-	reporte_recibido = models.DateField(null=True, blank=True)
-	reporte_enviado_co = models.DateField(null=True, blank=True)
-	reporte_validado_co = models.DateField(null=True, blank=True)
-	reporte_enviado_coord = models.DateField(null=True, blank=True)
-	reporte_validado_coord = models.DateField(null=True, blank=True)
 	nota_mastec = models.TextField(null=True, blank=True)
 	fecha_modif = models.DateField(auto_now=True)
 	fecha_creacion = models.DateField(auto_now_add=True)
 	capturado_por = models.ForeignKey(User, on_delete=models.CASCADE,)
+
+	class Meta:
+		verbose_name='mop'
+		verbose_name_plural='mops'
 
 	def __str__(self):
 		return u"%s" % (self.tipo_mop)
 
 class Mopslog(models.Model):
 	site_log = models.ForeignKey(Sitio, on_delete=models.CASCADE,)
+	owner_log = models.CharField(max_length=100, null=True, blank=True)
+	site_type_log = models.CharField(max_length=100, null=True, blank=True)
+	folio_attom_log = models.IntegerField(max_length=7, null=False, blank=False)
 	tipo_mop_log = models.CharField(max_length=100, null=False, blank=False)
+	mes_programado_log = models.CharField(choices=MES, max_length=50, null=False, blank=False)
 	cantidad_mop_log = models.PositiveSmallIntegerField(null=False, blank=False)
 	cantidad_mop_ejecutada_log = models.PositiveSmallIntegerField(null=False, blank=False, default=0)
-	mes_programado_log = models.CharField(choices=MES, max_length=50, null=False, blank=False)
-	semana_programada_log = models.PositiveSmallIntegerField(null=True, blank=True)
-	eliminado_log = models.BooleanField(null=False, blank=False)
 	fecha_inicio_log = models.DateField(null=True, blank=True)
 	fecha_fin_log = models.DateField(null=True, blank=True)
+	semana_programada_log = models.PositiveSmallIntegerField(null=True, blank=True)
+	eliminado_log = models.BooleanField(default=False)
 	contratista_log = models.ForeignKey(Contratista, on_delete=models.CASCADE, null=True, blank=True)
 	lider_contratista_log = models.CharField(max_length=100, null=True, blank=True)
-	# Fechas para seguimiento temporal, ya que la idea es que
-	# con la cadena de autorización se registren la fechas
-	reporte_recibido_log = models.DateField(null=True, blank=True)
-	reporte_enviado_co_log = models.DateField(null=True, blank=True)
-	reporte_validado_co_log = models.DateField(null=True, blank=True)
-	reporte_enviado_coord_log = models.DateField(null=True, blank=True)
-	reporte_validado_coord_log = models.DateField(null=True, blank=True)
 	nota_mastec_log = models.TextField(null=True, blank=True)
 	fecha_modif_log = models.DateField(auto_now=True)
 	fecha_creacion_log = models.DateField(auto_now_add=True)
 	capturado_por_log = models.ForeignKey(User, on_delete=models.CASCADE,)
+
+	class Meta:
+		verbose_name='moplog'
+		verbose_name_plural='moplogs'
 
 	def __str__(self):
 		return u"%s" % (self.tipo_mop_log)

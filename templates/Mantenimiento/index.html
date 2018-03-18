@@ -17,15 +17,22 @@
                 <div class="col-12 col-md-12">
                     <div class="container bg-light py-3">
 
+                        <div class="row pt-1">
+                          <div class="col text-center">
+                            <h1>Sistema De Gestión De Mantenimiento</h1>
+                          </div>
+                        </div>
+
+
                       <div class="row pt-1">
                         <div class="col-md-6 text-center">
-                          <h2>Preventivos</h2>
+                          <h2>MOPs</h2>
                           <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-                          <p>Información de Mantenimientos Preventivos R9 AT&T. </p>
+                          <p>Información de Mantenimientos Preventivos Programados R9 AT&T. </p>
                           <p><a class="btn btn-info" href="{% url 'Mantenimiento:preventivos'%}" role="button">Resumen</a></p>
                         </div>
                         <div class="col-md-6 text-center">
-                          <h2>Correctivos</h2>
+                          <h2>Reparos Preventivos</h2>
                           <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                           <p>Información de Mantenimientos Correctivos R9 AT&T </p>
                           <p><a class="btn btn-info" href="{% url 'Mantenimiento:correctivos'%}" role="button">Resumen</a></p>
