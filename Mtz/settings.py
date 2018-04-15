@@ -59,6 +59,7 @@ APPLICATIONS_APPS = [
 # Omar: Aplicaciones de terceros
 # se instala rest_framework
 THIRD_APPS = [
+    'axes'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + APPLICATIONS_APPS + THIRD_APPS
@@ -160,4 +161,4 @@ try:
     from .local_settings import *
 except:
     pass
-    
+
