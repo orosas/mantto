@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Sitio, Contratista, Mops, Mopslog
+from .models import Sitio, Contratista, Mop, Moplog
 
 # Register your models here.
 
@@ -13,7 +13,7 @@ class SitioAdmin(admin.ModelAdmin):
 	list_filter = ('coord', )
 
 
-class MopsAdmin(admin.ModelAdmin):
+class MopAdmin(admin.ModelAdmin):
 	search_fields = ('site', )
 
 	# despliega todos éstos campos en el Admin, antes de ver detalles de cada registro
@@ -24,7 +24,7 @@ class MopsAdmin(admin.ModelAdmin):
 
 
 
-class MopslogAdmin(admin.ModelAdmin):
+class MoplogAdmin(admin.ModelAdmin):
 	search_fields = ('site_log', )
 
 	# despliega todos éstos campos en el Admin, antes de ver detalles de cada registro
@@ -38,8 +38,8 @@ class MopslogAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Sitio, SitioAdmin)
-admin.site.register(Mops, MopsAdmin)
-admin.site.register(Mopslog, MopslogAdmin)
+admin.site.register(Mop, MopAdmin)
+admin.site.register(Moplog, MoplogAdmin)
 admin.site.register(Contratista, )
 
 

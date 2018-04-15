@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.db.models import Q
 from .forms import BusquedaForm
-from .models import Sitio, Mops
+from .models import Sitio, Mop
+
 
 #from django.http import HttpResponse
 
@@ -9,8 +12,11 @@ from .models import Sitio, Mops
 '''
 ToDo: OMAR
 
-08-MAR-2018
-Crear Login / Logut
+15-ABR-2018
+Checar django-import-export para importar xls
+
+Checar Django Axes para aumentar seguridad
+
 
 
 '''
@@ -19,6 +25,28 @@ Crear Login / Logut
 
 
 # Create your views here.
+
+"""
+Se requiere:
+from django.contrib.auth import authenticate, login
+"""
+def Login(request):
+	if request.method == 'POST':
+		user = authenticate(username=request.POST['username'], password=request.POST['password'])
+
+		if user is not None:
+			login(request,user)
+			return redirect('Mantenimiento:index')
+		else:
+			return HttpResponse("Error en usuario o contraseña")
+	else:
+		return render(request, 'Home/login.html')
+
+def Logout(request):
+	logout(request)
+	return redirect('Mantenimiento:index')
+
+
 def Index(request):
 
 	if request.user.is_authenticated():
@@ -66,17 +94,9 @@ def Busqueda(request):
 
 
 
-def Login(request):
-	pass
-
-def Logout(request):
-	pass
-
-
-
 def Detalle_Sitio(request,pk):
 	sitio = Sitio.objects.get(pk=pk)
-	mops = sitio.mops_set.all()
+	mops = sitio.mop_set.all()
 
 	print("dentro Detalle_Sitio pk "+pk)
 	#status = Status.objects.get(pk=pk)

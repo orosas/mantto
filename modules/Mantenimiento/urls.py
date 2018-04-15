@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import Index, Busqueda, Login, Detalle_Sitio, Preventivos, Preventivoform, Correctivos
+from .views import Index, Busqueda, Login, Detalle_Sitio, Preventivos, Preventivoform, Correctivos, Logout
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
@@ -9,7 +9,8 @@ urlpatterns = [
     url(r'^preventivos/$', Preventivos, name='preventivos'),
     url(r'^preventivoform/$', Preventivoform, name='preventivoform'),
     url(r'^correctivos/$', Correctivos, name='correctivos'),
-    url(r'^login$', Login, name='login'),
+    url(r'^login/$', Login, name='login'),
+    url(r'^logout/$', Logout, name='logout'),
     url(r'^detallesitio/(?P<pk>\d+)/$', Detalle_Sitio, name='detalle_sitio'),
     #url(r'^region/(?P<region>[\w-]+)/$', lista_Sitiosxregion, name='sitios_por_region'),
     #url(r'^busqueda/$', Busqueda_Sitio, name='busqueda_sitio'),

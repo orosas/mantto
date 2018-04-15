@@ -18,7 +18,6 @@ Agregar class FolioAttom para usar con class MOPs
 
 '''
 
-
 class Sitio(models.Model):
 	site = models.CharField(max_length=80, null=False, blank=False)
 	site_name = models.CharField(max_length=100, null=False, blank=False)
@@ -26,6 +25,7 @@ class Sitio(models.Model):
 	gsm = models.CharField(max_length=100, null=True, blank=True)
 	id_3g = models.CharField(max_length=100, null=True, blank=True)
 	lte = models.CharField(max_length=100, null=True, blank=True)
+	owner = models.CharField(max_length=100, null=True, blank=True)
 	lat_decimal = models.DecimalField(max_digits=9, decimal_places=6, null=True)
 	long_decimal = models.DecimalField(max_digits=9, decimal_places=6, null=True)
 	site2 = models.CharField(max_length=80, null=True, blank=True)
@@ -111,7 +111,7 @@ class Mop(models.Model):
 	site = models.ForeignKey(Sitio, on_delete=models.CASCADE,)
 	owner = models.CharField(max_length=100, null=True, blank=True)
 	site_type = models.CharField(max_length=100, null=True, blank=True)
-	folio_attom = models.IntegerField(max_length=7, null=False, blank=False)
+	folio_attom = models.IntegerField(null=False, blank=False)
 	tipo_mop = models.CharField(max_length=100, null=False, blank=False)
 	mes_programado = models.CharField(choices=MES, max_length=50, null=False, blank=False)
 	cantidad_mop = models.PositiveSmallIntegerField(null=False, blank=False)
@@ -134,11 +134,11 @@ class Mop(models.Model):
 	def __str__(self):
 		return u"%s" % (self.tipo_mop)
 
-class Mopslog(models.Model):
+class Moplog(models.Model):
 	site_log = models.ForeignKey(Sitio, on_delete=models.CASCADE,)
 	owner_log = models.CharField(max_length=100, null=True, blank=True)
 	site_type_log = models.CharField(max_length=100, null=True, blank=True)
-	folio_attom_log = models.IntegerField(max_length=7, null=False, blank=False)
+	folio_attom_log = models.IntegerField(null=False, blank=False)
 	tipo_mop_log = models.CharField(max_length=100, null=False, blank=False)
 	mes_programado_log = models.CharField(choices=MES, max_length=50, null=False, blank=False)
 	cantidad_mop_log = models.PositiveSmallIntegerField(null=False, blank=False)
