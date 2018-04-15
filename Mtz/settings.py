@@ -160,4 +160,14 @@ try:
     from .local_settings import *
 except:
     pass
-    
+
+# Omar: Agregado para usar Django axes, aún no se confirma que funcione
+# 15-ABR-2018
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    'axes_cache': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
